@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<!--
+    Criado: 05 / 09 / 2023
+    Por: Danilo Castro CE
+    Atualizado: 30 / 09 / 2023
+    Descrição da Atualização: Deixar os textareas do tamanho do table-btn-text-section-w. 
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bloco de Script's (v2.1)</title>
+    <meta name="author" content="Danilo Castro CE">
+    <meta name="description" content="Bloco de textos padrões">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style rel="stylesheet">
+        /*
+            1 - PRINCIPAL
+            2 - MODAL
+            3 - COMPONENTS
+            4 - TABELA
+            5 - RASCUNHO
+        
+        */
+
+        /* 
+        (1)
+        #####################################
+        ############ PRINCIPAL ##############
+        #####################################
+        */
+        :root {
+            --cor-background: rgb(0, 0, 0);
+            --cor-texto: rgb(255, 255, 255);
+            --cor-primary: #0d6efb;
+            --cor-sucess: #198754;
+            --cor-warning: #ffc107;
+            --cor-danger: #dc3545;
+            --cor-info: #20c997;
+            --cor-textArea-bg: white;
+            --cor-textArea-texto: black;
+
+            --h-btnTextarea: 35px;
+            --w-btnTextarea: 280px;
+            --w-rascunho: 338px;
+            --fontSize-btnTextarea: 14px;
+            --fontSize-rascunho: 16px;
+
+            --table-open-r: 0;
+
+            --table-btn-text-section-w: auto;
+            --table-btn-text-section-float: left;
+            --table-btn-text-display: flex;
+            --table-btn-text-margin: 0 4px 0 0;
+            --table-btn-text-justifyContent: start;
+            --table-btn-text-flexDirection: row;
+            --table-textarea-copy-display: block;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /*textarea {
+            border: none;
+        }*/
+
+        body {
+            background: var(--cor-background);
+            color: var(--cor-texto);
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        footer {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.5);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        footer p {
+            text-align: center;
+            opacity: .5;
+            font-size: 11px;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: var(--cor-primary);
+            color: white;
+            border: none;
+            padding: 2px;
+
+        }
+
+        button:hover {
+            background-color: var(--cor-sucess);
+        }
+
+        /*
+        (2)
+        #######################################
+        ############# MODAL ###################
+        #######################################
+        */
+        .modal {
+            display: block;
+            position: fixed;
+            z-index: 99;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-open {
+            position: absolute;
+            top: 0;
+            right: var(--table-open-r);
+            margin: 2px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+
+        .modal-open span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box-modal {
+            color: black;
+            max-width: 400px;
+            min-height: 200px;
+            margin: 20px auto;
+            background-color: rgba(255,255,255, 0.9);
+            border-radius: 8px;
+            z-index: 100;
+        }
+
+        .box-modal-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-content-head #tituloModal {
+            height: 26px;
+            width: 100%;
+            font-size: 20px;
+            background: linear-gradient(to right, var(--cor-primary), white);
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            padding-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .modal-content-head .modal-close {
+            display: none;
+            float: right;
+            font-size: 25px;
+            font-weight: 700;
+            margin-right: 5px;
+            color: var(--cor-danger);
+            cursor: pointer;
+        }
+
+        .modal-content-head .modal-close:hover {
+            color: var(--cor-primary);
+        }
+
+        .modal-content-body {
+            padding: 5px;
+        }
+
+        #modal-ok {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            margin: 4px auto;
+            height: 35px;
+            font-size: 18px;
+            color: white;
+            font-weight: 700;
+            width: 80%;
+        }
+
+        /*
+        (3)
+        ###############################
+        ######### COMPONENTS ##########
+        ###############################
+        */
+        .wrapper {
+            display: flex;
+            border: 1px solid gray;
+            border-radius: 8px;
+            padding: 8px;
+            margin: 8px;
+            transition: .5s;
+        }
+
+        .wrapper:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper input[type="radio"],
+        .wrapper input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+	    cursor: pointer;
+        }
+
+        .contentTipo span {
+            font-weight: 600;
+            padding: 5px;
+        }
+
+        .contentTipo p {
+            padding: 5px;
+        }
+
+        .checkbox {
+            border: 0;
+	    cursor: pointer;
+        }
+
+        #inputFile {
+            padding: 10px 5px;
+        }
+
+        /*Botao*/
+
+        .containerBotao {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .boxBotao {
+            padding: 15px;
+            margin-left: auto;
+        }
+
+        .inputCheckBotao {
+            opacity: 0;
+            position: absolute;
+        }
+
+        .onOff {
+            color: var(--cor-texto);
+            font-size: 7px;
+            text-align: center;
+        }
+
+        .labelBotao {
+            background-color: var(--cor-background);
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            position: relative;
+            height: 20px;
+            width: 40px;
+            transform: scale(1.5);
+
+        }
+
+        .labelBotao .ballBotao {
+            background-color: var(--cor-danger);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px black;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            height: 12px;
+            width: 12px;
+            transform: translateX(19px);
+            transition: transform 0.2s linear;
+        }
+
+
+        .inputCheckBotao:checked+.labelBotao .ballBotao {
+            transform: translateX(0);
+            background-color: var(--cor-sucess);
+        }
+
+        /*adicionar e remover script*/
+
+        .box-addRemScript {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .botaoAddRemScript {
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+
+        /*Esquerd DIreita*/
+
+        .box-esqDir {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .labelEsqDir {
+            border-radius: 5px;
+            margin: 5px;
+            padding: 5px 2px;
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+	    cursor: pointer;
+        }
+
+        .esqDirChecked {
+            background: var(--cor-sucess);
+            color: var(--cor-texto);
+            font-weight: 700;
+        }
+
+        .labelEsqDir .iptEsqDir {
+            opacity: 0;
+            position: absolute;
+            margin: 20px;
+        }
+
+        /* range */
+
+        .rangeBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rangeBox p {
+            margin-bottom: 5px;
+        }
+
+        .box-range {
+            background-color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+        }
+
+        .slider {
+            height: 30px;
+            width: 240px;
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .slider input {
+            height: 10px;
+            width: 100%;
+            /*-webkit-appearance: none;*/
+            outline: none;
+            background-color: #f2f2f2;
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+	    cursor:pointer;
+        }
+
+        .slider input::-moz-range-progress {
+            height: 10px;
+            border-radius: 25px;
+            background-color: #3498db;
+        }
+
+        .slider input::-moz-range-thumb {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            border: 4px solid #3498db;
+            /*-webkit-appearance: none;*/
+        }
+
+        .valor {
+            font-size: 20px;
+            width: 35px;
+            font-weight: 600;
+            font-family: sans-serif;
+            color: #3498db;
+            text-align: center;
+        }
+
+        /*
+        (4)
+        ###################################
+        ############ TABELA ###############
+        ###################################
+        */
+	
+        .section-btnTextarea {
+            width: var(--table-btn-text-section-w);
+            float: var(--table-btn-text-section-float);
+	        margin-bottom: 5px;
+        }
+
+        .box-btn-textarea {
+            display: var(--table-btn-text-display);
+            align-items: center;
+            justify-content: var(--table-btn-text-justifyContent);
+            flex-direction: var(--table-btn-text-flexDirection);
+        }
+
+        .selecionado {
+            opacity: 0.3;
+        }
+
+        .box-btn-textarea button {
+            color: var(--cor-texto);
+            margin: var(--table-btn-text-margin);
+            background-color: var(--cor-background);
+            border: 1px solid var(--cor-texto);
+            border-radius: 10px 0;
+            padding: 0 5px;
+            font-weight: 700;
+            transition: .3s;
+            height: var(--h-btnTextarea);
+            min-height: 30px;
+            max-height: 35px;
+        }
+
+        .box-btn-textarea button:hover {
+            background-color: var(--cor-texto);
+            color: var(--cor-background);
+        }
+
+        .box-btn-textarea button:active {
+            background: var(--cor-sucess);
+            color: var(--cor-warning);
+            box-shadow: 0 0 0 4px var(--cor-texto);
+        }
+
+        .box-btn-textarea .textarea-copy {
+            height: var(--h-btnTextarea);
+            width: var(--w-btnTextarea);
+            font-size: var(--fontSize-btnTextarea);
+            transition: .3s;
+            background: var(--cor-textArea-bg);
+            color: var(--cor-textArea-texto);
+        }
+
+        .textarea-copy {
+            padding: 2px 1px;
+            display: var(--table-textarea-copy-display)
+        }
+
+        /*
+        (5)
+        ##################################
+        ########### RASCUNHO #############
+        ##################################
+        */
+        #rascunho {
+            margin-top: 3px;
+            margin-bottom: 5px;
+            width: var(--w-rascunho);
+            height: 100px;
+            font-size: var(--fontSize-rascunho);
+            padding: 2px;
+            background: var(--cor-textArea-bg);
+            color: var(--cor-textArea-texto);
+            transition: .3s;
+        }
+    </style>
+    <script defer type="text/javascript">
+        /*
+            1 - PRINCIPAL
+            2 - TEXTOS PADRÕES
+            3 - COMPONENTS
+            4 - MODAL
+            5 - BUTTON & TEXTAREA
+            6 - LOCAL STORAGE
+        */
+
+
+        /*
+        (1)
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            @@@@@@@@@ PRINCIPAL @@@@@@@@@
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        */
+        let config = {
+            tipo: 'A',
+            checkbox: [],
+            btn_text: {
+                hide: false,
+                wBox: 380,
+                auto: true,
+                posicao: 'esq',
+                reorganizar: true,
+                black: false,
+            },
+            rascunho: true,
+        }
+
+        window.onload = () => {
+            modal('.modal', '.modal-open', '.modal-close', '#modal-ok')
+            components('.modal-content-body', 'tipos', opcoes = ['A', 'B', 'C', 'D', 'E'])
+            components('.modal-content-body', 'checkbox', opcoes = ['autoResize', 'chkRascunho'])
+            updateRascunho()
+            startLocalStorage()
+
+            document.querySelector('.form').addEventListener('submit', (e) => {
+                removeComponent('.modal-content-body')
+                updateRascunho()
+                e.preventDefault()
+            })
+
+        }
+
+
+        /*
+        (2)
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            @@@@@ TEXTOS PADRÕES @@@@@@@@
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        */
+        let tipoX = []
+
+        let tipoA = [
+            {
+                key: 'CONFIRMADO',
+                script: 'Dados confirmados com sucesso.'
+            },
+            {
+                key: 'LIG. ENCERRADA',
+                script: 'Ligação encerrada por falta de comunicação.'
+            },
+            {
+                key: 'DESCE',
+                script: 'Contato desce para receber.'
+            },
+            {
+                key: 'ACESSO LIBERADO',
+                script: 'Acesso liberado pelo contato.'
+            },
+            {
+                key: 'DISPENSA 1',
+                script: 'Não precisou do auxílio da portaria.'
+            },
+            {
+                key: 'DISPENSA 2',
+                script: 'Entregador informar que o morador vai descer para receber a entrega.'
+            },
+            {
+                key: 'PORTÃO ABERTO PARA ENTREGAR',
+                script: 'Abertura do portão para o morador receber uma entrega.'
+            },
+            {
+                key: 'SEM CÂMERA',
+                script: 'Atendimento sem o auxílio das imagens das câmeras.'
+            },
+            {
+                key: 'CÂMERA TRAVANDO',
+                script: 'Imagens das câmeras travando.'
+            },
+            {
+                key: 'OUTRO OPERADOR',
+                script: 'Em atendimento com outro operador.'
+            },
+            {
+                key: 'NÃO ATENDEU',
+                script: 'Não foi atendido: Interfone da unidade, '
+            }
+        ]
+
+        let tipoB = [
+            {
+                key: 'PORTÃO ABERTO',
+                script: 'Portão encontra-se fechado nas imagens ao vivo, não é possível identificar portões abertos. Gerando ocorrências o tempo todo.',
+            },
+            {
+                key: 'ELEVADOR 01',
+                script: 'Elevador livre nas imagens ao vivo.',
+            },
+            {
+                key: 'ELEVADOR 02',
+                script: 'Não foram identificadas pessoas presas no elevador. Fluxo normal.',
+            },
+            {
+                key: 'CARONA',
+                script: 'Falso negativo. Não houve acesso carona. Contagem errada.',
+            },
+            {
+                key: 'PÂNICO',
+                script: 'Na análise dos vídeos não é possível identificar alteração no local, aparentemente tudo bem e sem alteração.',
+            },
+            {
+                key: 'SEM GRAVAÇÃO',
+                script: 'Gravações não processadas, aparentemente tudo normal nas imagens ao vivo.',
+            },
+            {
+                key: 'ALARME',
+                script: 'Na análise das imagens ao vivo, não foram identificadas situação preocupantes no condomínio.',
+            },
+        ]
+
+        /*
+        (3)
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@
+            @@@@@@@@ COMPONENTS @@@@@@@
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+        */
+        const components = (box, opcao, auxOpcoes) => {
+            const groupRadio = 'opcoes'
+            const groupCheckbox = 'checkbox'
+
+
+            const arrayRadio = [
+                {
+                    className: 'classTipo',
+                    type: 'radio',
+                    name: groupRadio,
+                    value: 'A',
+                    titulo: 'Tipo A',
+                    desc: 'Textos padrões para portaria',
+                },
+                {
+                    className: 'classTipo',
+                    type: 'radio',
+                    name: groupRadio,
+                    value: 'B',
+                    titulo: 'Tipo B',
+                    desc: 'Textos padrões para outras ocorrências',
+                },
+                {
+                    className: 'classTipo',
+                    type: 'radio',
+                    name: groupRadio,
+                    value: 'C',
+                    titulo: 'Tipo C',
+                    desc: '(A + B) Textos padrões para portaria e outras ocorrências',
+                },
+                {
+                    className: 'classTipo',
+                    type: 'radio',
+                    name: groupRadio,
+                    value: 'D',
+                    titulo: 'Tipo D',
+                    desc: "Escolha um arquivo txt",
+                },
+                {
+                    className: 'classTipo',
+                    type: 'radio',
+                    name: groupRadio,
+                    value: 'E',
+                    titulo: 'Tipo E',
+                    desc: "Bloco de Script's vazio",
+                },
+
+            ]
+
+            const arrayCheckbox = [
+                {
+                    type: 'checkbox',
+                    name: groupCheckbox,
+                    value: 'autoResize',
+                    start: config.btn_text.auto ? 'checked' : '',
+                    desc: 'Redimensionar automaticamente altura da caixa de texto',
+                },
+                {
+                    type: 'checkbox',
+                    name: groupCheckbox,
+                    value: 'chkRascunho',
+                    start: config.rascunho ? 'checked' : '',
+                    desc: 'Bloco de rascunho',
+                },
+                {
+                    type: 'checkbox',
+                    name: groupCheckbox,
+                    value: 'chkReorganizar',
+                    start: config.btn_text.reorganizar ? 'checked' : '',
+                    desc: "Reorganizar manualmente as posições dos script's (Arraste os Botões)",
+                },
+                {
+                    type: 'checkbox',
+                    name: groupCheckbox,
+                    value: 'chkBlack',
+                    start: config.btn_text.black ? 'checked' : '',
+                    desc: "Caixa de texto com fundo Preto",
+                },
+            ]
+
+            try {
+                for (x = 0; x < arrayCheckbox.length; x++) {
+                    for (y = 0; y < config.checkbox.length; y++) {
+                        if (arrayCheckbox[x].value === config.checkbox[y].id) {
+                            if (config.checkbox[y].checked) {
+                                arrayCheckbox[x].start = 'checked'
+                            } else {
+                                arrayCheckbox[x].start = ''
+                            }
+                        }
+                    }
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+
+            let radios = ''
+            if (opcao === 'tipos') {
+                for (radio of arrayRadio) {
+                    let pass = false
+                    auxOpcoes.forEach(op => {
+                        if (radio.value === op) {
+                            pass = true
+                        }
+                    });
+                    if (pass) {
+                        radios += `
+                    <label for="radio${radio.value}">
+                        <table class="wrapper">
+                            <tr>
+                                <td>
+                                    <input 
+                                        class='${radio.className}' 
+                                        type="radio" 
+                                        id="radio${radio.value}" 
+                                        name="${radio.name}" 
+                                        value="${radio.value}" 
+                                        ${radio.value === config.tipo ? 'checked' : ''} 
+                                        onchange='changeTipo(this)'
+                                    >
+                                </td>
+                                <td class="contentTipo">
+                                    <span class="tituloTipo">${radio.titulo}</span>
+                                    <p>${radio.desc}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </label>
+                `//Fim do radios
+                    }
+                }
+            }
+
+            let checkbox = ''
+            if (opcao === 'checkbox') {
+                for (check of arrayCheckbox) {
+
+                    let pass = false
+                    auxOpcoes.forEach(op => {
+                        if (check.value === op) {
+                            pass = true
+                        }
+                    });
+
+                    if (pass) {
+                        checkbox += `
+                    <label for="${check.value}">
+                        <table class='wrapper checkbox'>    
+                            <tr>
+                                <td>
+                                    <input 
+                                        type='checkbox' 
+                                        id='${check.value}' 
+                                        name= ${check.name} 
+                                        value='${check.value}' 
+                                        ${check.start} 
+                                        onchange='changeCheckbox(this)'
+                                    >
+                                </td>
+                                <td class="contentTipo">
+                                    <p>${check.desc}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </label>
+                `//Fim do checkbox
+
+                        let indexCheckbox = -1
+                        try {
+                            config.checkbox.forEach((el, i) => {
+                                if (el.id === check.value) {
+                                    indexCheckbox = i
+                                    return
+                                }
+                            })
+
+                            if (indexCheckbox >= 0) {
+                                config.checkbox[indexCheckbox] = { id: check.value, checked: check.start === 'checked' ? true : false }
+                            } else {
+                                config.checkbox.push({ id: check.value, checked: check.start === 'checked' ? true : false })
+                            }
+                        } catch (error) {
+                            console.log(error)
+                        }
+
+                    }
+                }
+            }
+
+            let inputFile = ''
+            if (opcao === 'inputFile') {
+                inputFile += `
+                    <label for='inputFile'>
+                        <div class='wrapper'>
+                            <input id='inputFile' onchange='changeInputFile()' type='file'>
+                        </div>
+                    </label>
+                    <div style='margin-top:10px; max-width:400px; font-size: 14px;'>
+                            <p style='font-size:16px; font-weight:600; margin-top:10px;'>Dica 1: </p>
+                            <p style='margin: 5px 0 0 40px;'>
+                                Crie um arquivo de texto no formato TXT e deixe os seus scripts entre as chaves <b>{ }</b>.</b>
+                            </p>
+
+                            <p style='margin: 5px 0 0 35px;'>Exemplo:</p>
+                            <p style='margin: 2px 0 0 40px;'>
+                                Elevador <b>{</b>Elevador livre nas imagens ao vivo.<b>}</b><br>
+                                liberação <b>{</b>Acesso liberado pelo contato.<b>}</b><br>
+                                <b>{</b>Não precisou do auxílio da portaria.<b>}</b><br>
+                                <b>{</b>Contato desce para receber.<b>}</b><br>
+                                <b>{</b>Imagens das câmeras travando.<b>}</b><br>   
+                            </p>
+                            <hr style='margin-top: 20px;'>
+                            <p style='font-size:16px; font-weight:600; margin-top:10px;'>Dica 2: </p>
+                            <p style='margin: 2px 0 0 40px;'>
+                                Você pode colocar uma chave identificadora entre os colchetes <b>[ ]</b> que não será copiado
+                            </p>
+
+                            <p style='margin: 10px 0 0 35px;'>Exemplo:</p>
+                            <p style='margin: 5px 0 20px 40px;'>
+                                {<b>[</b>ELEVADOR<b>]</b> Elevador livre nas imagens ao vivo.}
+                            </p>                         
+                        </div>
+                `//Fim do inputFile
+            }
+
+            let botaoOnOff = ''
+            if (opcao === 'onOff') {
+                const chk = config.btn_text.hide ? 'checked' : ''
+                botaoOnOff = `
+                    <div class='containerBotao wrapper'>
+                    <p>${auxOpcoes[0].text}</p>
+                    <div class='boxBotao'>
+                        <input type="checkbox" ${chk} class='inputCheckBotao' id='${auxOpcoes[0].id}' onchange='changeInputCheckBotao(this)'>
+                        <label class="labelBotao" for="${auxOpcoes[0].id}">
+                            <span class="onOff">ON</span>
+                            <span class="onOff">OFF</span>
+                            <div class="ballBotao" id='ball_${auxOpcoes[0].id}'></div>
+                        </label>
+                    </div>
+                    <div>
+                    `//Fim botaoOnOff
+            }
+
+            let addRemScript = ''
+            if (opcao === 'addRemScript') {
+                addRemScript = `
+                    <div class='box-addRemScript wrapper'>
+                        <p>${auxOpcoes[0].texto}</p>
+                        <div class='content-botaoAddRem'>
+                            <button type='button' class='botaoAddRemScript' onclick="clickAddRemScript('add')">Adicionar</button>
+                            <button type='button' class='botaoAddRemScript' onclick="clickAddRemScript('rem')">Remover</button>
+                        </div>
+                    </div>
+                `//FIm addRemScript
+
+            }
+
+            let esqDir = ''
+            if (opcao === 'esqDir') {
+                const pos = config.btn_text.posicao
+                //console.log('pos ' + pos)
+                esqDir = `
+                    <div class='box-esqDir wrapper'>
+                        <p>${auxOpcoes[0].texto}</p>
+                        <div class='content-botaoAddRem'>
+                            <label class='labelEsqDir ${pos === 'esq' ? 'esqDirChecked' : ''}' for='chkEsq' id='esqLabel'>
+                                <p >Esquerda</p>
+                                <input class='iptEsqDir' ${pos === 'esq' ? 'checked' : ''} type='radio' name='EsquerDireita' id='chkEsq' value='esq' onchange='changeEsqDir(this)'/>
+                            </label>
+                            <label class='labelEsqDir ${pos === 'dir' ? 'esqDirChecked' : ''}' for='chkDir' id='dirLabel'>
+                                <p>Direita</p>
+                                <input class='iptEsqDir' ${pos === 'dir' ? 'checked' : ''} type='radio' name='EsquerDireita' id='chkDir' value='dir' onchange='changeEsqDir(this)'/>
+                            </label>
+                        </div>
+                    </div>
+                `//Fim esqDir
+            }
+
+            let rangeBox = ''
+            if (opcao === 'rangeBox') {
+                rangeBox = `
+                    <div class='rangeBox wrapper'>
+                        <p>Tamanho do box dos botões e das caixas de texto<p>
+                        <div class="box-range">
+                            <div class="slider">
+                                <input id="range" type="range" min="200" max="800" value= "${config.btn_text.wBox}" onchange="handle_range(this)">
+                            </div>
+                            <div class="valor"></div>
+                        </div>
+                    </div>
+                `//Fim do rangeBox
+            }
+
+
+            let codigo = ''
+            if (opcao === 'tipos') {
+                codigo = radios
+                escolhaTipo(config)
+
+            } else if (opcao === 'checkbox') {
+                codigo = checkbox
+            } else if (opcao === 'inputFile') {
+                codigo = inputFile
+            } else if (opcao === 'onOff') {
+                codigo = botaoOnOff
+            } else if (opcao === 'addRemScript') {
+                codigo = addRemScript
+            } else if (opcao === 'esqDir') {
+                codigo = esqDir
+            } else if (opcao === 'rangeBox') [
+                codigo = rangeBox
+            ]
+
+            document.querySelector(box).innerHTML += codigo
+
+            if (opcao === 'rangeBox') {
+                const el = document.querySelector('#range')
+                document.querySelector('.valor').textContent = el.value
+
+                const chkOnOff = document.querySelector('.inputCheckBotao')
+                if (chkOnOff.checked) {
+                    config.btn_text.wBox = parseInt(el.value)
+                    try {
+                        document.querySelector('.box-all-btnTextarea').style.width = element.value + 'px'
+
+                        const root = document.documentElement;
+                        const sizeRascunho = parseInt(getComputedStyle(root).getPropertyValue('--w-rascunho'))
+
+                        if (parseInt(element.value) < sizeRascunho) {
+                            document.querySelector('#rascunho').style.width = element.value + 'px'
+                        } else {
+                            document.querySelector('#rascunho').style.width = sizeRascunho + 'px'
+                        }
+
+                    } catch (error) {
+                        //console.log(error)
+                    }
+                } else {
+                    //document.querySelector('#range').setAttribute('disabled', 'disabled')
+                    document.querySelector('.box-all-btnTextarea').style.width = 'auto'
+                }
+            }
+        }
+
+        const handle_range = (element) => {
+            document.querySelector('.valor').textContent = element.value
+            const chkOnOff = document.querySelector('.inputCheckBotao')
+            //console.log(chkOnOff.checked)
+
+	    const btns_txts = document.querySelectorAll('.textarea-copy') 
+	    btns_txts.forEach(btn_txt => {
+		btn_txt.style.width = 'auto'
+		btn_txt.style.width = 'var(--w-btnTextarea)'
+	    })
+	    
+	    const root = document.documentElement;
+	    document.getElementById('rascunho').style.width = 'auto'
+	    document.getElementById('rascunho').style.width = 'var(--w-rascunho)'
+            root.style.setProperty('--w-rascunho', `${element.value}px`)
+	    root.style.setProperty('--w-btnTextarea', `${element.value-58}px`)
+	    config.btn_text.wBox = parseInt(element.value)
+	    document.querySelector('.box-all-btnTextarea').style.width = element.value + 'px'
+	    updateHeight()
+
+            /*if (chkOnOff.checked) {
+                //config.btn_text.wBox = parseInt(element.value)
+                //document.querySelector('.box-all-btnTextarea').style.width = element.value + 'px'
+
+                const root = document.documentElement;
+                const sizeRascunho = parseInt(getComputedStyle(root).getPropertyValue('--w-rascunho'))
+
+                if (parseInt(element.value) < sizeRascunho) {
+                    document.querySelector('#rascunho').style.width = element.value + 'px'
+                } else {
+                    document.querySelector('#rascunho').style.width = sizeRascunho + 'px'
+                }
+
+
+            } else {
+                document.querySelector('.box-all-btnTextarea').style.width = 'auto'
+            }*/
+        }
+
+        const removeComponent = (box) => {
+            document.querySelector(box).innerHTML = ''
+        }
+
+        const deletComponent = (box) => {
+            document.querySelector(box).remove()
+        }
+
+        const changeCheckbox = (obj) => {
+            //console.log(`Id: ${obj.id} Checked: ${obj.checked}`)
+            const opcoes = document.getElementsByName('checkbox')
+
+            for (i = 0; i < config.checkbox.length; i++) {
+                if (config.checkbox[i].id === obj.id) {
+                    config.checkbox[i].checked = obj.checked
+                }
+            }
+
+            if (obj.id === 'autoResize') {
+                config.btn_text.auto = obj.checked
+                updateHeight()
+            } else if (obj.id === 'chkRascunho') {
+                config.rascunho = obj.checked
+                updateRascunho()
+            }else if (obj.id === 'chkReorganizar'){
+                config.btn_text.reorganizar = obj.checked
+                updateReorganizar()
+            }else if (obj.id === 'chkBlack'){
+                config.btn_text.black = obj.checked
+                updateBlack()
+            }
+            //console.log(config)
+        }
+
+        const updateRascunho = () => {
+            if (config.rascunho) {
+                document.querySelector('#rascunho').style.display = 'block'
+            } else {
+                document.querySelector('#rascunho').style.display = 'none'
+            }
+        }
+
+        const updateReorganizar = () => {
+
+            const btns = document.querySelectorAll('.btn-copy')
+
+            if (config.btn_text.reorganizar) {
+                //console.log('reorganizar: true')
+                btns.forEach(btn => {
+                    btn.setAttribute('draggable', 'true')  
+                })
+            } else {
+                //console.log('reorganizar: false')
+                btns.forEach(btn => {
+                    btn.setAttribute('draggable', 'false')  
+                })
+            } 
+        }
+
+        const updateBlack = () => {
+            const root = document.documentElement;
+            if(config.btn_text.black){
+                root.style.setProperty('--cor-textArea-bg', 'black')
+                root.style.setProperty('--cor-textArea-texto', 'white')
+            }else {
+                root.style.setProperty('--cor-textArea-bg', 'white')
+                root.style.setProperty('--cor-textArea-texto', 'black')
+            }
+        }
+
+        const changeTipo = (obj) => {
+            config.tipo = obj.value
+
+            if (config.tipo == 'D') {
+                removeComponent('.modal-content-body')
+                document.querySelector('#tituloModal').textContent = 'Escolha o arquivo txt'
+                document.querySelector('.modal').style.display = 'block'
+                //document.querySelector('#modal-ok').style.display = 'none'
+                components('.modal-content-body', 'inputFile')
+                escolhaTipo(config)
+            } else {
+                escolhaTipo(config)
+
+            }
+
+        }
+
+
+        const changeInputFile = () => {
+            try {
+                const input = document.querySelector('#inputFile')
+                const file = input.files[0]
+
+                fetch(URL.createObjectURL(file))
+                    .then(response => response.text())
+                    .then(texto => {
+                        addTextoArray(texto, 'start')
+                    });
+            } catch (error) {
+            }
+
+
+        }
+
+        const changeEsqDir = (obj) => {
+            //console.log(obj.value)
+            config.btn_text.posicao = obj.value
+            document.querySelector(`#esqLabel`).classList.remove('esqDirChecked')
+            document.querySelector(`#dirLabel`).classList.remove('esqDirChecked')
+            document.querySelector(`#${obj.value}Label`).classList.add('esqDirChecked')
+
+            const root = document.documentElement;
+
+            if (obj.value === 'esq') {
+                root.style.setProperty('--table-btn-text-section-float', 'left')
+                root.style.setProperty('--table-open-r', '0')
+                root.style.setProperty('--table-btn-text-flexDirection', 'row')
+                if(!config.btn_text.hide){
+                    root.style.setProperty('--table-btn-text-margin', '0 4px 0 0')
+                }
+
+            } else {
+                root.style.setProperty('--table-btn-text-section-float', 'right')
+                root.style.setProperty('--table-open-r', ' ')
+                root.style.setProperty('--table-btn-text-flexDirection', 'row-reverse')
+                if(!config.btn_text.hide){
+                    root.style.setProperty('--table-btn-text-margin', '0 0 0 4px')
+                }
+            }
+        }
+
+        const addTextoArray = (txt, op) => {
+            let indexs_script = { s: undefined, e: undefined }
+            let indexs_key = { s: undefined, e: undefined }
+            let script = undefined
+            let key = undefined
+            let arrayScript = []
+
+            for (i = 0; i < txt.length; i++) {
+                const caracter = txt[i]
+                //console.log(`index: ${i} caracter: ${caracter}`)
+
+                if (caracter === '{') {
+                    indexs_script.s = i + 1
+
+                } else if (caracter === '[' && indexs_script.s !== undefined) {
+                    indexs_key.s = i + 1
+
+                } else if (caracter === ']' && indexs_key.s !== undefined) {
+                    indexs_key.e = i
+                    key = txt.slice(indexs_key.s, indexs_key.e)
+                    indexs_script.s = i + 1
+                    indexs_key.s = undefined
+                    indexs_key.e = undefined
+                }
+                else if (caracter === '}' && indexs_script.s !== undefined) {
+                    indexs_script.e = i
+                    //console.log(`(${indexs_script.s} - ${indexs_script.e})`)
+                    script = txt.slice(indexs_script.s, indexs_script.e)
+                    indexs_script.s = undefined
+                    indexs_script.e = undefined
+                    indexs_key.s = undefined
+                    indexs_key.e = undefined
+
+                    let s_script = undefined
+
+                    for (x = 0; x < script.length; x++) {
+                        if (script[x] !== ' ') {
+                            s_script = x
+                            script = script.slice(x)
+                            break
+                        }
+                    }
+
+                    arrayScript.push({ key: key, s_script: s_script, script: script })
+                    key = undefined
+                    script = undefined
+                }
+            }
+
+            switch (op) {
+                case 'start':
+                    tipoX = arrayScript
+                    criarBtnText('.box-all-btnTextarea', tipoX)
+                    break;
+
+                case 'update':
+                    return arrayScript[0]
+                    break;
+
+                default:
+                    break
+            }
+        }
+
+        const addDel = (box, op) => {
+            const el = document.querySelectorAll('.box-btn-textarea')
+            if (op === 'add') {
+                const resp = controleBtnTextarea('', 'add', `btnTxt${el.length}`, obj = { key: undefined, txt: '' })
+                tipoX.push({ key: undefined, script: '' })
+                document.querySelector(box).innerHTML += resp
+
+                if (config.btn_text.hide) {
+                    upBtnTextarea('on')
+                }
+                alert(`Campo de SCRIPT adicionado com sucesso (${el.length + 1})`)
+
+                attScript()
+
+            } else if (op === 'del') {
+                if (confirm('Deseja excluir o ultima campo de script?')) {
+                    el[el.length - 1].remove()
+                    tipoX.pop()
+                }
+            }
+        }
+
+
+        const changeInputCheckBotao = (obj) => {
+            if (obj.checked) {
+                config.btn_text.hide = true
+                upBtnTextarea('on')
+                //document.querySelector('#range').removeAttribute('disabled')
+
+            } else {
+                config.btn_text.hide = false
+                upBtnTextarea('off')
+                //document.querySelector('#range').setAttribute('disabled', 'disabled')
+            }
+            updateHeight()
+
+            
+
+        }
+
+        const clickAddRemScript = (op) => {
+            if (op === 'add') {
+                addDel('.box-all-btnTextarea', 'add')
+
+            } else if (op === 'rem') {
+                try {
+                    addDel('.box-all-btnTextarea', 'del')
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+
+        const attScript = () => {
+            const texts = document.querySelectorAll('.textarea-copy')
+            tipoX.forEach((el, i) => {
+                const key = el.key !== undefined ? `[${el.key}] ` : ''
+                const script = el.script
+                texts[i].value = key + script
+                //console.log(`${key} - ${script}`)
+            })
+        }
+
+        const escolhaTipo = (config) => {
+            document.title = `(${config.tipo}) Bloco de Script's`
+            switch (config.tipo) {
+                case 'A':
+                    criarBtnText('.box-all-btnTextarea', tipoA)
+                    tipoX = tipoA
+                    break;
+                case 'B':
+                    criarBtnText('.box-all-btnTextarea', tipoB)
+                    tipoX = tipoB
+                    break;
+                case 'C':
+                    tipoX = [...tipoA, ...tipoB]
+                    criarBtnText('.box-all-btnTextarea', tipoX)
+                    break;
+                case 'D':
+                    break;
+                case 'E':
+                    tipoX = []
+                    criarBtnText('.box-all-btnTextarea')
+                    break;
+                default:
+                    document.title = `Error - Script's`
+                    break;
+            }
+        }
+
+        /*
+        (4)
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            @@@@@@@@@@ MODAL @@@@@@@@@@@@@
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@	
+        */
+
+        const modal = (isModal, isOpen, isClose, isBtn) => {
+            const modal = document.querySelector(isModal)
+            const open = document.querySelector(isOpen)
+            const close = document.querySelector(isClose)
+            const btn = document.querySelector(isBtn)
+            document.querySelector('#tituloModal').textContent = 'Configurações iniciais'
+
+            btn.addEventListener('click', () => {
+                modal.style.display = 'none'
+                close.style.display = 'block'
+                removeComponent('.modal-content-body')
+            })
+
+            open.addEventListener('click', () => {
+                document.querySelector('#tituloModal').textContent = 'Configuração'
+                config.aux = 'config'
+                modal.style.display = 'block'
+                btn.style.display = 'none'
+                components('.modal-content-body', 'onOff', opcoes = [{
+                    text: "Esconder os script's e deixar apenas os botões copiar",
+                    id: "hide-textarea",
+                }])
+                components('.modal-content-body', 'addRemScript', opcoes = [{ texto: 'Campo para SCRIPT' }])
+                components('.modal-content-body', 'esqDir', opcoes = [{ texto: "Posição dos SCRIPT's" }])
+                components('.modal-content-body', 'rangeBox', opcoes = [{}])
+                components('.modal-content-body', 'checkbox', opcoes = ['autoResize', 'chkRascunho','chkReorganizar', 'chkBlack'])
+
+            })
+
+        }
+        const handlerClose = () => {
+            removeComponent('.modal-content-body')
+            const modal = document.querySelector('.modal')
+            modal.style.display = 'none'
+
+        }
+
+        const handlerBody = (e) => {
+            const modal = document.querySelector('.modal')
+            if (e.target === modal) {
+                removeComponent('.modal-content-body')
+                modal.style.display = 'none'
+            }
+        }
+
+        /*
+        (5)
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+            @@@@@@@@ BUTTON & TEXTAREA @@@@@@@
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        */
+
+        //criarBtnText precisa receber um array de objetos com duas propriedade: key e script
+        const criarBtnText = (box, array) => {
+            let content = ''
+            try {
+                array.forEach((obj, index) => {
+                    const key = obj.key !== undefined ? `[${obj.key}] ` : ''
+                    const txt = obj.script !== undefined ? obj.script : ''
+                    content += controleBtnTextarea(box, 'add', `btnTxt${index}`, text = { key: key, txt: txt })
+                });
+            } catch (error) {
+            }
+
+            document.querySelector(box).innerHTML = content
+        }
+
+        const controleBtnTextarea = (box, op, id, obj) => {
+            const key = obj.key !== undefined ? obj.key : ''
+            const txt = obj.txt === undefined ? '' : `${key}${obj.txt}`
+            let botao = 'Copiar'
+            if (op === 'add') {
+                const btnTextarea = `
+                    <div class='box-btn-textarea' id='${id}'>
+                    <button class='btn-copy' onclick='handleCopy(this)' onmouseenter='handleCopyEnter(this)'
+                    onmouseleave='handleCopyLeave(this)' 
+                    id='btn_${id}'
+                    draggable='${config.btn_text.reorganizar}'
+                        ondragstart='dragStart(event)' 
+                        ondragend='dragEnd(event)' 
+                        ondragover='dragOver(event)' 
+                        ondrop='drop(event)' 
+                    
+                    >${botao}</button>
+                    <textarea class='textarea-copy' onchange='onChangeCopyText(this)' placeholder='Escreva aqui o seu texto padrão'>${txt}</textarea>
+                    </div>
+                    `//Fim do btnTextarea   
+                return btnTextarea
+            } else if (op === 'cls') {
+                document.querySelector(box).innerHTML = ''
+            } else if (op === 'del') {
+                document.querySelector(`#${id}`).remove()
+            }
+            else {
+                console.log('error')
+            }
+        }
+
+        const dragStart = (e) => {
+            e.dataTransfer.setData("text/plain", e.target.parentElement.id);
+            document.querySelector(`#${e.target.parentElement.id}`).classList.add('selecionado')
+        }
+        const dragEnd = (e) => {
+            e.preventDefault()
+
+            const btns = document.querySelectorAll('.box-btn-textarea')
+            btns.forEach(btn => {
+                btn.classList.remove('selecionado')
+            })
+            //console.log(tipoX)
+        }
+        const dragOver = (e) => {
+            e.preventDefault()
+        }
+        const drop = (e) =>{
+            e.preventDefault()
+            let idDrag = e.dataTransfer.getData("text")
+            let idDrop = e.target.parentElement.id
+            const elDrag = document.querySelector(`#${idDrag}`)
+            const elDrop = document.querySelector(`#${idDrop}`)
+            //console.log(`drag: ${idDrag} drop: ${idDrop}`)
+            
+            /*
+            let aux = elDrag.innerHTML
+            elDrag.innerHTML = elDrop.innerHTML
+            elDrop.innerHTML = aux
+    
+            idDrag = idDrag.slice(6)
+            idDrop = idDrop.slice(6)
+           
+            aux = tipoX[idDrag]
+            tipoX[idDrag] = tipoX[idDrop]
+            tipoX[idDrop] = aux
+            */
+            //console.log(tipoX)
+
+            const dragId = idDrag.slice(6)
+            const dropId = idDrop.slice(6)
+
+            //Antes do targetElementpor si mesmo.
+            //elDrop.insertAdjacentElement('beforebegin',elDrag)
+            
+            // Depois do targetElementpor si mesmo.
+            elDrop.insertAdjacentElement('afterend',elDrag) 
+            
+            const btns_txts = document.querySelectorAll('.box-btn-textarea')
+
+            tipoX = []
+            btns_txts.forEach((btnTxt,i) => {
+                btnTxt.setAttribute('id',`btnTxt${i}`)
+                btnTxt.children[0].id = `btn_btnTxt${i}`
+                const txt = `{${btnTxt.children[1].value}}`
+                tipoX.push(addTextoArray(txt,'update'))
+                //console.log(btnTxt)
+            });            
+            
+            //console.log(tipoX)
+
+
+        }
+
+        const upBtnTextarea = (op) => {
+            const boxBtnText = document.querySelectorAll('.box-btn-textarea');
+            boxBtnText.forEach((el, i) => {
+                const root = document.documentElement;
+                btn = el.firstElementChild
+                txt = el.lastElementChild
+
+                if (op === 'on') {
+                    const box = document.querySelector('.box-all-btnTextarea')
+                    const copiar = (i + 1) < 10 ? `COPIAR 0${(i + 1)}` : `COPIAR ${(i + 1)}`
+                    btn.textContent = tipoX[i].key !== undefined ? tipoX[i].key : copiar
+                    txt.style.display = 'none'
+                    root.style.setProperty('--table-btn-text-display', 'inline-block')
+                    root.style.setProperty('--table-btn-text-section-w', config.btn_text.wBox + 'px')
+                    root.style.setProperty('--table-btn-text-margin', '2px')
+
+
+                } else if (op === 'off') {
+                    const box = document.querySelector('.box-all-btnTextarea')
+                    btn.textContent = 'Copiar'
+                    txt.style.display = 'block'
+                    root.style.setProperty('--table-btn-text-display', 'flex')
+                    root.style.setProperty('--table-btn-text-section-w', 'auto')
+                    if(config.btn_text.posicao === 'dir'){
+                        root.style.setProperty('--table-btn-text-margin', '0 0 0 4px')
+                    }else if (config.btn_text.posicao === 'esq'){
+                        root.style.setProperty('--table-btn-text-margin', '0 4px 0 0')
+                    }
+                }
+
+
+            });
+        }
+
+        const updateHeight = () => {
+            if (config.btn_text.auto) {
+                const btns = document.querySelectorAll('.textarea-copy')
+                const root = document.documentElement
+                const minSize = parseInt(getComputedStyle(root).getPropertyValue('--h-btnTextarea'))
+
+                btns.forEach((el, i) => {
+                    el.style.height = 'auto'
+                    let size = el.scrollHeight + 2
+                    if (size < minSize) {
+                        size = minSize + 2
+                    } else if (size > 150) {
+                        size = 150
+                    }
+                    el.style.height = `${size}px`
+                });
+            }
+        }
+
+        const handleCopy = (obj) => {
+            const elPai = obj.parentElement
+            const elTextarea = elPai.getElementsByTagName('textarea')[0]
+            const script = tipoX[elPai.id.slice(6)].script
+            navigator.clipboard.writeText(script)
+                .then(() => {
+                    elTextarea.select()
+                    //console.log(`Texto copiado com sucesso: ${script}`);
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar o texto: ', err);
+                });
+        }
+
+        const handleCopyEnter = (obj) => {
+            const elTextarea = obj.parentElement.getElementsByTagName('textarea')[0]
+            elTextarea.style.background = 'var(--cor-warning)'
+            elTextarea.style.color = 'black'
+            elTextarea.style.transform = 'scale(1.1)'
+        }
+
+        const handleCopyLeave = (obj) => {
+            const elTextarea = obj.parentElement.getElementsByTagName('textarea')[0]
+            elTextarea.style.background = 'var(--cor-textArea-bg)'
+            elTextarea.style.color = 'var(--cor-textArea-texto)'
+            elTextarea.style.transform = 'scale(1)'
+        }
+
+        const onChangeCopyText = (obj) => {
+            const idPai = obj.parentElement.id.slice(6)
+            tipoX[parseInt(idPai)] = addTextoArray(`{${obj.value}}`, 'update')
+            const key = tipoX[parseInt(idPai)].key
+            obj.value = `${key !== undefined ? "[" + key + "] " : ''}${tipoX[parseInt(idPai)].script}`
+            obj.parentElement.children[1].textContent = obj.value
+            updateHeight()
+        }
+
+
+        /*
+        (6)
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@btnTxt12
+            @@@@@@@ LOCAL STORAGE @@@@@@@@@@
+            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        */
+        const changeRascunho = () => {
+            try {
+                localStorage.setItem('rascunho', document.querySelector('#rascunho').value);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        const startLocalStorage = () => {
+            try {
+                document.querySelector('#rascunho').value = localStorage.getItem('rascunho');
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+    </script>
+
+</head>
+
+<body onclick='handlerBody(event)'>
+    <header>
+        <nav class='modal-open'>
+            <span class="material-symbols-outlined">
+                settings
+            </span>
+        </nav>
+    </header>
+    <section style="display: block;">
+        <article class="modal">
+            <form action="" class="box-modal form">
+                <div class="box-modal-content">
+                    <div class="modal-content-head">
+                        <span class="modal-close" onclick='handlerClose()'>&times;</span>
+                        <h1 id="tituloModal"></h1>
+                    </div>
+                    <div class="modal-content-body">
+                    </div>
+                    <button type="submit" class='btn' id="modal-ok">OK</button>
+                </div>
+
+            </form>
+        </article>
+    </section>
+    <section class="section-btnTextarea">
+        <article class="box-all-btnTextarea">
+        </article>
+        <article>
+            <textarea id="rascunho" onchange="changeRascunho()"></textarea>
+        </article>
+    </section>
+    <footer>
+        <p>by: @DaniloCastroCE (2023)</p>
+    </footer>
+</body>
+
+</html>
