@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Condomínios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Adicionado para posicionar a data */
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            height: 50px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        .date {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .edit-button {
+            background-color: #17a2b8;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .edit-button:hover {
+            background-color: #138496;
+        }
+
+        .save-button {
+            background-color: #ffc107;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background-color: #e0a800;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="data:image/png;base64,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" alt="Logo LockTec"> <!-- Substitua pelo URL da sua imagem de logo -->
+            <h1>Registro de Condomínios</h1>
+            <div class="date" id="currentDate"></div>
+        </div>
+        <form id="condominiumForm">
+            <div class="form-group">
+                <label for="name">Condomínio:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="arrival">Horário:</label>
+                <input type="time" id="arrival" name="arrival" required>
+            </div>
+            <div class="form-group">
+                <label for="technician">Técnico:</label>
+                <input type="text" id="technician" name="technician" required>
+            </div>
+            <div class="form-group">
+                <label for="reason">Motivo:</label>
+                <textarea id="reason" name="reason" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contato:</label>
+                <input type="text" id="contact" name="contact" required>
+            </div>
+            <div class="form-group">
+                <label for="departure">Saída:</label>
+                <input type="time" id="departure" name="departure">
+            </div>
+            <button type="button" onclick="addRecord()">Confirmar</button>
+        </form>
+
+        <table id="recordTable">
+            <thead>
+                <tr>
+                    <th>Condomínio</th>
+                    <th>Horário</th>
+                    <th>Técnico</th>
+                    <th>Motivo</th>
+                    <th>Contato</th>
+                    <th>Saída</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Registros serão adicionados aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function addRecord() {
+            const name = document.getElementById('name').value;
+            const arrival = document.getElementById('arrival').value;
+            const technician = document.getElementById('technician').value;
+            const reason = document.getElementById('reason').value;
+            const contact = document.getElementById('contact').value;
+            const departure = document.getElementById('departure').value;
+
+            if (!name || !arrival || !technician || !reason || !contact) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            const tableBody = document.querySelector('#recordTable tbody');
+            const newRow = document.createElement('tr');
+
+            newRow.innerHTML = `
+                <td class="name">${name}</td>
+                <td class="arrival">${arrival}</td>
+                <td class="technician">${technician}</td>
+                <td class="reason">${reason}</td>
+                <td class="contact">${contact}</td>
+                <td class="departure">${departure}</td>
+                <td>
+                    <button class="edit-button" onclick="editRow(this)">Editar</button>
+                    <button class="save-button hidden" onclick="saveRow(this)">Salvar</button>
+                </td>
+            `;
+
+            tableBody.appendChild(newRow);
+            document.getElementById('condominiumForm').reset();
+        }
+
+        function editRow(button) {
+            const row = button.closest('tr');
+            row.querySelectorAll('td:not(:last-child)').forEach(cell => {
+                const input = document.createElement('input');
+                input.type = cell.classList.contains('arrival') || cell.classList.contains('departure') ? 'text' : 'text';
+                input.value = cell.textContent;
+                input.classList.add('editable');
+                cell.innerHTML = '';
+                cell.appendChild(input);
+            });
+
+            const saveButton = row.querySelector('.save-button');
+            const editButton = row.querySelector('.edit-button');
+            editButton.classList.add('hidden');
+            saveButton.classList.remove('hidden');
+        }
+
+        function saveRow(button) {
+            const row = button.closest('tr');
+            row.querySelectorAll('td:not(:last-child)').forEach(cell => {
+                const input = cell.querySelector('input');
+                cell.textContent = input.value;
+            });
+
+            const saveButton = row.querySelector('.save-button');
+            const editButton = row.querySelector('.edit-button');
+            editButton.classList.remove('hidden');
+            saveButton.classList.add('hidden');
+        }
+
+        document.addEventListener('input', function(event) {
+            if (event.target.classList.contains('editable')) {
+                const value = event.target.value;
+                // Permitir apenas números e ":" para horários
+                event.target.value = value.replace(/[^0-9:]/g, '');
+            }
+        });
+
+        // Função para exibir a data atual
+        function displayDate() {
+            const date = new Date();
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            const formattedDate = date.toLocaleDateString('pt-BR', options);
+            document.getElementById('currentDate').textContent = formattedDate;
+        }
+
+        // Exibir a data ao carregar a página
+        displayDate();
+    </script>
+</body>
+</html>
+
