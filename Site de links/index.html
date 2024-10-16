@@ -16,7 +16,6 @@
             flex-direction: column;
             min-height: 100vh;
             font-family: Arial, sans-serif;
-            margin: 0;
         }
         header {
             background-color: #003366;
@@ -36,21 +35,27 @@
             margin-bottom: 35px;
         }
         .list-group {
+            display: flex; /* Usa flexbox para alinhar os itens lado a lado */
+            flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte, se necessário */
             list-style: none;
             padding: 0;
+            gap: 10px; /* Espaçamento entre os itens */
         }
         .list-group-item {
             background: white;
-            padding: 15px 60px 15px 15px;
-            margin: 10px 0 15px 0;
+            padding: 15px;
             border-radius: 4px;
             transition: background-color 0.3s;
             text-decoration: none;
             color: #4c5eaf;
             display: flex;
             align-items: center;
+            justify-content: center; /* Centraliza o conteúdo do item */
             border: 1px solid transparent;
             box-sizing: border-box;
+            flex: 1 1 150px; /* Tamanho fixo para os itens */
+            height: 60px; /* Altura fixa para todos os itens */
+            width: 250px; /* Largura fixa para todos os itens */
         }
         .list-group-item:hover {
             background-color: #e9ecef;
@@ -81,36 +86,41 @@
 <main class="container">
     <nav>
         <ul class="list-group">
-            <li><a href="https://www.rhid.com.br/v2/#/login" target="_blank" class="list-group-item">
+            <li><a href="https://www.rhid.com.br/v2/#/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-user-clock"></i> RHid-Ponto
             </a></li>
-            <li><a href="http://192.168.0.17/pvloc/public/login" target="_blank" class="list-group-item">
+            <li><a href="http://192.168.0.17/pvloc/public/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-clipboard-list"></i> Pvloc
             </a></li>
-            <li><a href="http://192.168.0.9/os" target="_blank" class="list-group-item">
+            <li><a href="http://192.168.0.9/os" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-tools"></i> Sistema de OS
             </a></li>
-            <li><a href="https://mail.locktec.com.br/#1" target="_blank" class="list-group-item">
+            <li><a href="https://mail.locktec.com.br/#1" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-envelope"></i> Zimbra
             </a></li>
-            <li><a href="https://docs.google.com/document/d/1woOKYUfwXuOtwegurR8vgujA16PMZMHcvkYHKifcEyc/edit" target="_blank" class="list-group-item">
+            <li><a href="https://docs.google.com/document/d/1woOKYUfwXuOtwegurR8vgujA16PMZMHcvkYHKifcEyc/edit" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-file-alt"></i> Planilha Definitiva
             </a></li>
-            <li><a href="https://docs.google.com/spreadsheets/d/1EJcz8EIjBUKCmTyHW6hJ2UP1l7hQE5bh0w7Gh8VGScQ/edit#gid=1537658235" target="_blank" class="list-group-item">
+            <li><a href="https://docs.google.com/spreadsheets/d/1EJcz8EIjBUKCmTyHW6hJ2UP1l7hQE5bh0w7Gh8VGScQ/edit#gid=1537658235" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-calendar-alt"></i> Escalas
             </a></li>
-            <li><a href="https://docs.google.com/spreadsheets/d/1FLt0tmjWeygd2YWBzYJs2Ah24LxXdF21leSs7MTJf8M/edit?gid=632110289#gid=632110289" target="_blank" class="list-group-item">
+            <li><a href="https://docs.google.com/spreadsheets/d/1FLt0tmjWeygd2YWBzYJs2Ah24LxXdF21leSs7MTJf8M/edit?gid=632110289#gid=632110289" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-phone"></i> Ramais
             </a></li>
-            <li><a href="https://testesjonas.com/Monitoramento/" target="_blank" class="list-group-item">
+            <li><a href="https://testesjonas.com/Monitoramento/" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-table"></i> Planilha de Resultados do Jonas
             </a></li>            
-            <li><a href="https://yanlevii.github.io/Locktec_Project/Script_lock/index.html" target="_blank" class="list-group-item">
+            <li><a href="https://yanlevii.github.io/Locktec_Project/Script_lock/index.html" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-code"></i> Script do Mestre
             </a></li>
-            <li><a href="http://192.168.0.36/dashAsterisk/#" target="_blank" class="list-group-item">
+            <li><a href="http://192.168.0.36/dashAsterisk/#" target="_blank" rel="noopener noreferrer" class="list-group-item">
                 <i class="fas fa-chart-bar"></i> Dashboard
             </a></li>
+            <li>
+                <a href="https://exemplo.com/mapas-condominios" target="_blank" rel="noopener noreferrer" class="list-group-item" aria-label="Acesso aos mapas dos condomínios">
+                    <i class="fas fa-map"></i> Mapas dos Condomínios
+                </a>
+            </li>
         </ul>
     </nav>
 </main>
