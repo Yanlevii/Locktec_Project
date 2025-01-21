@@ -29,7 +29,7 @@
         }
         .container {
             flex: 1;
-            padding: 20px;
+            padding: 20px 0px 35px 0px;
             max-width: 800px;
             margin: auto;
             margin-bottom: 35px;
@@ -40,6 +40,7 @@
             list-style: none;
             padding: 0;
             gap: 10px; /* Espaçamento entre os itens */
+            justify-content: center;
         }
         .list-group-item {
             background: white;
@@ -74,11 +75,65 @@
             text-align: center; /* Centraliza o texto */
             padding: 20px 0; /* Adiciona espaço em cima e embaixo */
         }
+        .descer{
+            animation: descer 0.8s ease forwards;
+        }
+        .animacao1{
+            animation: teste 0.4s ease forwards;
+        }
+        .animacao2{
+            animation: teste 0.6s ease forwards;
+        }
+        .animacao3{
+            animation: teste 0.8s ease forwards;
+        }
+        .animacao4{
+            animation: teste 1s ease forwards;
+        }
+        .animacao5{
+            animation: teste 1.2s ease forwards;
+        }
+        .animacao6{
+            animation: teste 1.4s ease forwards;
+        }
+        .animacao7{
+            animation: teste 1.6s ease forwards;
+        }
+        .animacao8{
+            animation: teste 0.8s ease forwards;
+        }
+        @keyframes teste {
+            from {
+                transform: translateY(200px);
+                opacity: 0;
+            }  
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes descer {    
+            from {
+                transform: translateY(-200px);
+                opacity:0;
+            } 
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        /* Responsividade para telas pequenas */
+        @media (max-width: 768px) {
+            .list-group-item {
+                flex: 1 1 45%; /* Ajusta o tamanho para que ocupem 45% da tela em telas menores */
+                width: auto; /* Deixa a largura flexível */
+            }
+        }
     </style>
 </head>
 <body>
 
-<header>
+<header class="descer">
     <h1>Locktec Tecnologia</h1>
     <p class="lead">Links Gerenciais para fácil acesso</p>
 </header>
@@ -86,80 +141,80 @@
 <main class="container">
     <nav>
         <ul class="list-group">
-            <li><a href="https://www.rhid.com.br/v2/#/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="https://www.rhid.com.br/v2/#/login" target="_blank" rel="noopener noreferrer" class="list-group-item animacao1">
                 <i class="fas fa-user-clock"></i> RHid-Ponto
             </a></li>
-            <li><a href="http://192.168.0.17/pvloc/public/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="http://192.168.0.17/pvloc/public/login" target="_blank" rel="noopener noreferrer" class="list-group-item animacao1">
                 <i class="fas fa-headset"></i> Pvloc
             </a></li>
-            <li><a href="http://192.168.0.9/os" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="http://192.168.0.9/os" target="_blank" rel="noopener noreferrer" class="list-group-item animacao1">
                 <i class="fas fa-tools"></i> Sistema de OS
             </a></li>
-            <li><a href="https://mail.locktec.com.br/#1" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="https://mail.locktec.com.br/#1" target="_blank" rel="noopener noreferrer" class="list-group-item animacao2">
                 <i class="fas fa-envelope"></i> Zimbra
             </a></li>
-            <li><a href="https://docs.google.com/document/d/1woOKYUfwXuOtwegurR8vgujA16PMZMHcvkYHKifcEyc/edit" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="https://docs.google.com/document/d/1woOKYUfwXuOtwegurR8vgujA16PMZMHcvkYHKifcEyc/edit" target="_blank" rel="noopener noreferrer" class="list-group-item animacao2">
                 <i class="fas fa-file-alt"></i> Planilha Definitiva
             </a></li>
-            <li><a href="https://docs.google.com/spreadsheets/d/1EJcz8EIjBUKCmTyHW6hJ2UP1l7hQE5bh0w7Gh8VGScQ/edit#gid=1537658235" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="https://docs.google.com/spreadsheets/d/1EJcz8EIjBUKCmTyHW6hJ2UP1l7hQE5bh0w7Gh8VGScQ/edit#gid=1537658235" target="_blank" rel="noopener noreferrer" class="list-group-item animacao2">
                 <i class="fas fa-calendar-alt"></i> Escalas
             </a></li>
-            <li><a href="https://docs.google.com/spreadsheets/d/1FLt0tmjWeygd2YWBzYJs2Ah24LxXdF21leSs7MTJf8M/edit?gid=632110289#gid=632110289" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="https://docs.google.com/spreadsheets/d/1FLt0tmjWeygd2YWBzYJs2Ah24LxXdF21leSs7MTJf8M/edit?gid=632110289#gid=632110289" target="_blank" rel="noopener noreferrer" class="list-group-item animacao3">
                 <i class="fas fa-phone"></i> Ramais
             </a></li>           
-            <li><a href="https://bloco-qz7l.onrender.com/bloco" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="https://bloco-qz7l.onrender.com/bloco" target="_blank" rel="noopener noreferrer" class="list-group-item animacao3">
                 <i class="fas fa-code"></i> Script do Mestre
             </a></li>
-            <li><a href="http://192.168.0.36/dashAsterisk/#" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="http://192.168.0.36/dashAsterisk/#" target="_blank" rel="noopener noreferrer" class="list-group-item animacao3">
                 <i class="fas fa-chart-bar"></i> Dashboard
             </a></li>
             <li>
-                <a href="https://danilocastroce.github.io/mapa-locktec/" target="_blank" rel="noopener noreferrer" class="list-group-item" aria-label="Acesso aos mapas dos condomínios">
+                <a href="https://danilocastroce.github.io/mapa-locktec/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao4" aria-label="Acesso aos mapas dos condomínios">
                     <i class="fas fa-map"></i> Mapa do Mestre
                 </a>
             </li>
             <li>
-                <a href="https://testesjonas.com/pausa/public_html/atendimento/" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="https://testesjonas.com/pausa/public_html/atendimento/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao4">
                 <i class="fas fa-clock"></i> Pausas
             </a>
             </li>
             <li>
-                <a href="http://192.168.0.9:8001/" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="http://192.168.0.9:8001/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao4">
                 <i class="fas fa-clipboard-list"></i> Gerenciador
             </a>
             </li>
             <li>
-                <a href="https://adm.locktec.com.br/scripts/login.php" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="https://adm.locktec.com.br/scripts/login.php" target="_blank" rel="noopener noreferrer" class="list-group-item animacao5">
                 <i class="fas fa-map-marker-alt"></i> Rastreamento
             </a>
             </li>
             <li>
-                <a href="http://192.168.0.17/condominio_api/public/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="http://192.168.0.17/condominio_api/public/login" target="_blank" rel="noopener noreferrer" class="list-group-item animacao5">
                 <i class="fas fa-building"></i> Portal de atendimento
             </a>
             </li>
             <li>
-                <a href="http://192.168.0.99/glpi/" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="http://192.168.0.99/glpi/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao5">
                 <i class="fas fa-cogs"></i> GLPI
             </a>
             </li>
             <li>
-                <a href="https://painel.multi360.com.br/login.html" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="https://painel.multi360.com.br/login.html" target="_blank" rel="noopener noreferrer" class="list-group-item animacao6">
                 <i class="fab fa-whatsapp"></i> MULTI
             </a>
             </li>
             <li>
-                <a href="http://192.168.0.25/zabbix/zabbix.php?action=dashboard.list " target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="http://192.168.0.25/zabbix/zabbix.php?action=dashboard.list " target="_blank" rel="noopener noreferrer" class="list-group-item animacao6">
                 <i class="fas fa-exclamation-circle"></i> Zabix
             </a>
             </li>
             <li>
-                <a href="http://192.168.0.2/PVL.php" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="http://192.168.0.2/PVL.php" target="_blank" rel="noopener noreferrer" class="list-group-item animacao6">
                 <i class="fas fa-phone-alt"></i> Log Pvl
             </a>
             </li>
             <li>
-                <a href="http://192.168.0.9:8034/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
+                <a href="http://192.168.0.9:8034/login" target="_blank" rel="noopener noreferrer" class="list-group-item animacao7">
                 <i class="fas fa-redo"></i> Reboot
             </a>
             </li>            
@@ -167,7 +222,7 @@
     </nav>
 </main>
 
-<footer>
+<footer class="animacao8">
     <p>&copy; 2024 Locktec Tecnologia. Todos os direitos reservados. (Criado por Yan Levi)</p>
 </footer>
 
