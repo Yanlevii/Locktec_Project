@@ -82,11 +82,57 @@
         :hover.linkgerencial {
             color: #D3D3D3 ;
         }
+        .descer{
+            animation: descer 0.8s ease forwards;
+        }
+        .animacao1{
+            animation: teste 0.4s ease forwards;
+        }
+        .animacao2{
+            animation: teste 0.6s ease forwards;
+        }
+        .animacao3{
+            animation: teste 0.8s ease forwards;
+        }
+        .animacao4{
+            animation: teste 1s ease forwards;
+        }
+        .animacao5{
+            animation: teste 0.8s ease forwards;
+        }
+        @keyframes teste {
+            from {
+                transform: translateY(200px);
+                opacity: 0;
+            }  
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes descer {    
+            from {
+                transform: translateY(-200px);
+                opacity:0;
+            } 
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsividade para telas pequenas */
+        @media (max-width: 768px) {
+            .list-group-item {
+                flex: 1 1 45%; /* Ajusta o tamanho para que ocupem 45% da tela em telas menores */
+                width: auto; /* Deixa a largura flexível */
+            }
+        }
     </style>
 </head>
 <body>
 
-<header>
+<header class="descer">
     <h1>Locktec Tecnologia</h1>
     <p class="lead">Links Rápidos para Acesso</p>
 </header>
@@ -94,50 +140,60 @@
 <main class="container">
     <nav>
         <ul class="list-group">
-            <li><a href="https://www.rhid.com.br/v2/#/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            <li><a href="https://www.rhid.com.br/v2/#/login" target="_blank" rel="noopener noreferrer" class="list-group-item animacao1">
                 <i class="fas fa-user-clock"></i> RHid-Ponto
             </a></li>
-            <li><a href="http://192.168.0.17/pvloc/public/login" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="http://192.168.0.17/pvloc/public/login" target="_blank" rel="noopener noreferrer" class="list-group-item animacao1">
                 <i class="fas fa-headset"></i> Pvloc
             </a></li>
-            <li><a href="http://192.168.0.9/os" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="http://192.168.0.9/os" target="_blank" rel="noopener noreferrer" class="list-group-item animacao1">
                 <i class="fas fa-tools"></i> Sistema de OS
             </a></li>
-            <li><a href="https://mail.locktec.com.br/#1" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="https://mail.locktec.com.br/#1" target="_blank" rel="noopener noreferrer" class="list-group-item animacao2">
                 <i class="fas fa-envelope"></i> Zimbra
             </a></li>
-            <li><a href="https://docs.google.com/document/d/1woOKYUfwXuOtwegurR8vgujA16PMZMHcvkYHKifcEyc/edit" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="https://docs.google.com/document/d/1woOKYUfwXuOtwegurR8vgujA16PMZMHcvkYHKifcEyc/edit" target="_blank" rel="noopener noreferrer" class="list-group-item animacao2">
                 <i class="fas fa-file-alt"></i> Planilha Definitiva
             </a></li>
-            <li><a href="https://docs.google.com/spreadsheets/d/1EJcz8EIjBUKCmTyHW6hJ2UP1l7hQE5bh0w7Gh8VGScQ/edit#gid=1537658235" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="https://docs.google.com/spreadsheets/d/1EJcz8EIjBUKCmTyHW6hJ2UP1l7hQE5bh0w7Gh8VGScQ/edit#gid=1537658235" target="_blank" rel="noopener noreferrer" class="list-group-item animacao2">
                 <i class="fas fa-calendar-alt"></i> Escalas
             </a></li>
-            <li><a href="https://docs.google.com/spreadsheets/d/1FLt0tmjWeygd2YWBzYJs2Ah24LxXdF21leSs7MTJf8M/edit?gid=632110289#gid=632110289" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="https://docs.google.com/spreadsheets/d/1FLt0tmjWeygd2YWBzYJs2Ah24LxXdF21leSs7MTJf8M/edit?gid=632110289#gid=632110289" target="_blank" rel="noopener noreferrer" class="list-group-item animacao3">
                 <i class="fas fa-phone"></i> Ramais
             </a></li>
-            <li><a href="https://testesjonas.com/Monitoramento/" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="https://testesjonas.com/Monitoramento/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao3">
                 <i class="fas fa-table"></i> Planilha de Resultados do Jonas
-            </a></li>            
-            <li><a href="https://danilocastroce.github.io/blocos/" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            </a></li>    
+
+            <li><a href="https://danilocastroce.github.io/blocos/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao3">
                 <i class="fas fa-code"></i> Scripts do Mestre 
             </a></li>
-            <li><a href="http://192.168.0.36/dashAsterisk/#" target="_blank" rel="noopener noreferrer" class="list-group-item">
+
+            <li><a href="http://192.168.0.36/dashAsterisk/#" target="_blank" rel="noopener noreferrer" class="list-group-item animacao4">
                 <i class="fas fa-chart-bar"></i> Dashboard
             </a></li>
-            <li>
-                <a href="https://danilocastroce.github.io/mapa-locktec/" target="_blank" rel="noopener noreferrer" class="list-group-item" aria-label="Acesso aos mapas dos condomínios">
+
+            <li><a href="https://danilocastroce.github.io/mapa-locktec/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao4" aria-label="Acesso aos mapas dos condomínios">
                     <i class="fas fa-map"></i> Mapa do Mestre
-                </a>
-            </li>
-            <li><a href="https://testesjonas.com/pausa/public_html/atendimento/" target="_blank" rel="noopener noreferrer" class="list-group-item">
+            </a></li>
+
+            <li><a href="https://testesjonas.com/pausa/public_html/atendimento/" target="_blank" rel="noopener noreferrer" class="list-group-item animacao4">
                 <i class="fas fa-clock"></i> Pausas
-            </a></li>            
+            </a></li>   
+
         </ul>
     </nav>
 </main>
 
-<footer>
-    <p>&copy; 2024 <a href="https://yanlevii.github.io/Locktec_Project/Script_lock/" class="linkgerencial">Locktec Tecnologia.</a> Todos os direitos reservados. (Criado por Yan Levi)</p>
+<footer class="animacao5">
+    <p>&copy; 2024 <a href="https://yanlevii.github.io/Locktec_Project/Script_lock/" class="linkgerencial ">Locktec Tecnologia.</a> Todos os direitos reservados. (Criado por Yan Levi)</p>
 </footer>
 
 </body>
